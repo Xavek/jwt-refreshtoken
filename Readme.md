@@ -1,4 +1,4 @@
-# User Authentication System with Headless JsonwebTokens with implementation of refresh tokens for persisted user auth.
+## User Authentication System with Headless JsonwebTokens with implementation of refresh tokens for persisted user auth.
 
 Benifits Of Using JWT
 
