@@ -39,8 +39,8 @@ function jwtSign(userEmail){
 
 function jwtVerify(req,res,next){
     
-    if(req.headers.authorization){
-        const token = req.headers.authorization.split(" ")[1]
+    if(req.cookies.token){
+        const token = req.cookies.token
         // const options = {expriesIn:process.env.tokenLife}
         
 
@@ -70,7 +70,7 @@ function refreshToken(usrData){
     if((usrData.refreshToken) &&(usrData.refreshToken in refreshTokensList)){
         const payload = usrData.email
         const newtoken = jwt.sign({payload:payload},process.env.JWT_SECRET_KEY, {expiresIn: process.env.tokenLife} )
-        const response = {"newtoken":newtoken}
+        const response = {"newtoken":newtoken , "refreshToken":usrData.refreshToken}
         refreshTokensList[usrData.refreshToken].token = newtoken
         return response
 

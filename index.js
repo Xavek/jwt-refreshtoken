@@ -1,14 +1,18 @@
+require("dotenv").config()
 const express = require("express")
 const cors = require("cors")
+const cookieParser = require("cookie-parser")
 const helmet = require("helmet")
-require("dotenv").config()
 const app = express()
+
 app.use(helmet())
+// This must be used while developing SPA with different ports
+// app.use(cors({origin: 'localhost:3000', credentials:true}))
 app.use(cors())
 app.use(express.json())
 
 // app.use(express.urlencoded({extends:false}))
-app.use(express.json())
+app.use(cookieParser())
 
 const PORT = process.env.PORT
 const usrRoutes = require("./src/modules/users/userRoutes")
