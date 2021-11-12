@@ -30,8 +30,8 @@ router.post("/token", (req,res)=>{
     res.status(200).json(response)
     
 })
-router.get("/aftergregister", jwtVerify,(req,res)=>{
-    res.json("You Sucessfully registered.")
+router.get("/isregister", jwtVerify,(req,res)=>{
+    res.json("Yes You Are Already registered")
 })
 
 module.exports = router
