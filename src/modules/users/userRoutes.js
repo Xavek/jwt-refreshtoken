@@ -9,7 +9,7 @@ router.post("/register",(req,res)=>{
     if(req.body.email !== undefined){
         const value = userValidator(req.body)
         const result = jwtSign(req.body.email)
-        res.cookie('token',result.token, {httpOnly:true})
+        res.cookie(`token`,`${result.token}`, {httpOnly:true})
         res.cookie("refreshToken", result.refreshToken,{httpOnly:true})
         console.log(value)
         res.status(200).json(result)
@@ -25,7 +25,7 @@ router.get("/", jwtVerify,(req,res)=>{
 router.post("/token", (req,res)=>{
     const response = refreshToken(req.body)
     console.log(response)
-    res.cookie('token',response.newtoken,{httpOnly:true})
+    res.cookie(`token`,`${response.newtoken}`,{httpOnly:true, secure:true, sameSite: "lax"})
     res.cookie("refreshToken", response.refreshToken,{httpOnly:true})
     res.status(200).json(response)
     
